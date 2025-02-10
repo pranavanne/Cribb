@@ -1,17 +1,18 @@
+// handlers/user.go
 package handlers
 
 import (
 	"context"
-	"cribb-backend/config"
-	"cribb-backend/models"
 	"encoding/json"
 	"net/http"
+
+	"cribb-backend/config"
+	"cribb-backend/models"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// GetUsersHandler returns all users
 func GetUsersHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -36,7 +37,6 @@ func GetUsersHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(users)
 }
 
-// GetUserByUsernameHandler returns a specific user by username
 func GetUserByUsernameHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -62,7 +62,6 @@ func GetUserByUsernameHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(user)
 }
 
-// GetUsersByScoreHandler returns users sorted by score
 func GetUsersByScoreHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
