@@ -24,6 +24,10 @@ func main() {
 	http.HandleFunc("/api/users/by-username", handlers.GetUserByUsernameHandler)
 	http.HandleFunc("/api/users/by-score", handlers.GetUsersByScoreHandler)
 
+	http.HandleFunc("/api/groups", handlers.CreateGroupHandler)
+	http.HandleFunc("/api/groups/join", handlers.JoinGroupHandler)
+	http.HandleFunc("/api/groups/members", handlers.GetGroupMembersHandler)
+
 	log.Println("Server starting on port 8080...")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
