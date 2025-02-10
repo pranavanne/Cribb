@@ -53,7 +53,9 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		Password:    string(hashedPassword),
 		Name:        req.Name,
 		PhoneNumber: req.PhoneNumber,
-		Score:       10, // Initial score
+		Score:       10,
+		Group:       "null", // Set to string "null"
+		GroupID:     "null", // Set to string "null"
 		CreatedAt:   time.Now(),
 		UpdatedAt:   time.Now(),
 	}
@@ -69,7 +71,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Return success response
+	// Return success message
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(map[string]string{
