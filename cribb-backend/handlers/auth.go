@@ -12,6 +12,7 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -54,8 +55,8 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		Name:        req.Name,
 		PhoneNumber: req.PhoneNumber,
 		Score:       10,
-		Group:       "null", // Set to string "null"
-		GroupID:     "null", // Set to string "null"
+		Group:       "",                    // Empty string for no group
+		GroupID:     primitive.NilObjectID, // Proper null ObjectID
 		CreatedAt:   time.Now(),
 		UpdatedAt:   time.Now(),
 	}
